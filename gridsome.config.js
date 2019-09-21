@@ -1,5 +1,6 @@
 module.exports = {
-  siteName: 'Gridsome',
+  siteName: 'LearnAsalato',
+  siteUrl: process.env.SITE_URL,
 
   templates: {
     ContentfulBlogPost: [
