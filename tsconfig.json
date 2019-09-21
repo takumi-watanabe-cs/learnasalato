@@ -1,0 +1,34 @@
+// tsconfig.json
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
+    "experimentalDecorators": true,
+    // this aligns with Vue's browser support
+    "target": "es5",
+    // this enables stricter inference for data properties on `this`
+    "strict": true,
+    // if using webpack 2+ or rollup, to leverage tree shaking:
+    "module": "es2015",
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "outDir": "./built/",
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "types": [
+      "@types/node",
+      "vue-meta"
+    ]
+  },
+  "include": [
+    "./src/**/*", 
+    "tailwind.config.js"
+  ]
+}
