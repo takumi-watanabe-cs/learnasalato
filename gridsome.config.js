@@ -37,28 +37,28 @@ module.exports = {
         cacheTime: 600000, // default
       }
     },
-    {
-      use: 'gridsome-plugin-rss',
-      options: {
-        contentTypeName: 'Post',
-        feedOptions: {
-          title: 'Bleda, a Gridsome blog starter',
-          feed_url: 'https://gridsome-starter-bleda.netlify.com/feed.xml',
-          site_url: 'https://gridsome-starter-bleda.netlify.com'
-        },
-        feedItemOptions: node => ({
-          title: node.title,
-          description: node.description,
-          url: 'https://gridsome-starter-bleda.netlify.com/' + node.slug,
-          author: node.author,
-          date: node.date
-        }),
-        output: {
-          dir: './static',
-          name: 'feed.xml'
-        }
-      }
-    },
+    // {
+    //   use: 'gridsome-plugin-rss',
+    //   options: {
+    //     contentTypeName: 'Post',
+    //     feedOptions: {
+    //       title: 'Bleda, a Gridsome blog starter',
+    //       feed_url: 'https://learnasalato.netlify.com/feed.xml',
+    //       site_url: 'https://learnasalato.netlify.com'
+    //     },
+    //     feedItemOptions: node => ({
+    //       title: node.title,
+    //       description: node.description,
+    //       url: 'https://learnasalato.netlify.com/' + node.slug,
+    //       author: node.author,
+    //       date: node.date
+    //     }),
+    //     output: {
+    //       dir: './static',
+    //       name: 'feed.xml'
+    //     }
+    //   }
+    // },
     {
       use: 'gridsome-plugin-tailwindcss',
       options: {
