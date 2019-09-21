@@ -26,7 +26,7 @@ import { DateHelper } from '../utility/dateHelper';
     Fluid
   },
 })
-export default class Blog extends Vue {
+export default class ArticlePreview extends Vue {
   @Prop() article;
 
   constructor() {

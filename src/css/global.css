@@ -17,5 +17,17 @@ html, body, html * {
 }
 
 *:focus {
-    outline: none;
+  outline: none;
+}
+
+input:focus, a:focus {
+  outline: none;
+}
+
+.article-item {
+  border-bottom: solid #edf2f7 2px;
+}
+
+.article-item:hover, .headline-item:hover {
+  background: #edf2f7;
 }

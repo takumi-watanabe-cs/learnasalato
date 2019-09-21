@@ -165,8 +165,8 @@ sub { bottom: -0.25em; }
 
 /* Lists */
 ul, ol { 
-  /* margin: 1em 0; 
-  padding: 0 0 0 2em;  */
+  margin: 1em 0; 
+  padding: 0 0 0 2em; 
 }
 
 ol li {
@@ -175,7 +175,7 @@ ol li {
 }
 
 ul li {
-  /* list-style-type: disc;  */
+  list-style-type: disc; 
   padding-bottom: 0.50em;
 }
 

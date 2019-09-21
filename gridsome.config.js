@@ -1,5 +1,5 @@
 module.exports = {
-  siteName: 'LearnAsalato',
+  siteName: 'Learn Asalato',
   siteUrl: process.env.SITE_URL,
 
   templates: {

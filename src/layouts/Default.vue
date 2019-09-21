@@ -1,25 +1,25 @@
 <template>
   <div class="layout mb-10 mx-auto px-80">
-    <header class="flex justify-between mb-16 sm:h-20 h-10 items-center">
-      <strong>
-        <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-      </strong>
-      <nav class="nav">
-        <g-link class="nav__link sm:text-lg text-sm sm:ml-12 ml-8" to="/">Home</g-link>
-        <g-link class="nav__link sm:text-lg text-sm sm:ml-12 ml-8" to="/about/">About</g-link>
-      </nav>
-    </header>
-    <slot/>
+    <Header />
+    <slot />
   </div>
 </template>
 
-<static-query>
-query {
-  metadata {
-    siteName
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
+import Header from "@/components/Header.vue";
+
+@Component({
+  components: {
+    Header
+  }
+})
+export default class Deafult extends Vue {
+  constructor() {
+    super();
   }
 }
-</static-query>
+</script>
 
 <style scoped lang="postcss">
 .layout {
@@ -28,6 +28,6 @@ query {
 }
 
 .nav__link {
-  color: gray
+  color: gray;
 }
 </style>

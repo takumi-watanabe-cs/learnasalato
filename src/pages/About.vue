@@ -12,7 +12,7 @@ import { Component } from "vue-property-decorator";
   components: {
   }
 })
-export default class Blog extends Vue {
+export default class About extends Vue {
 }
 </script>
 

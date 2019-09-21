@@ -14,16 +14,13 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { Article } from "../models/article";
-import Fluid from "../components/Fluid.vue";
-import { DateHelper } from '../utility/dateHelper';
+import { Article } from "@/models/article";
+import { DateHelper } from '@/utility/dateHelper';
 
 @Component({
-  components: {
-    Fluid
-  },
+  components: { },
 })
-export default class Blog extends Vue {
+export default class ArticleLinePreview extends Vue {
   @Prop() article;
 
   constructor() {
