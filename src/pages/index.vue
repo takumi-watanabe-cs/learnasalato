@@ -1,29 +1,35 @@
 <template>
   <Layout>
     <div class="mb-20">
-      <div class="flex items-end">
+      <div class="flex flex-wrap items-end">
         <div class="mr-20">
           <h2 class="text-6xl">Asalato</h2>
           <p>We write latest and useful articles about Asalato.</p>
           <ul>
-            <li>What is Asalato</li>
+            <li>What is Asalato?</li>
             <li>Trick List</li>
             <li>Where to Buy</li>
             <li>Events</li>
             </ul>
         </div>
-        <g-image class="w-5/12 h-full ml-auto" src="@/assets/hero.png" />
+        <g-image class="sm:w-5/12 h-full sm:ml-auto" src="@/assets/hero.png" />
       </div>
     </div>
     <div class="mb-32">
-      <h2>Latest Articles</h2>
+      <div class="flex items-center">
+        <h2 class="mr-8">Latest Articles</h2>
+        <g-link class="tag" to="/articles">View all</g-link>
+      </div>
       <div v-for="(article, index) in articles" :key="index">
         <ArticleHeadline :article="article" />
       </div>
     </div>
 
     <div v-if="popularArticles.length > 0" class="popular">
-      <h2>Popular</h2>
+      <div class="flex items-center">
+        <h2>Popular</h2>
+        <g-link class="tag">View all</g-link>
+      </div>
       <div v-for="(article, index) in popularArticles" :key="index">
         <ArticleHeadline :article="article" isPopular="true" />
       </div>
@@ -108,5 +114,17 @@ export default class Blog extends Vue {
 <style scoped>
 h2 {
   border: none;
+}
+ul li {
+  list-style: none;
+}
+
+ul li::before {
+  color: gray;
+  content: "\2022";
+  font-weight: bold;
+  display: inline-block; 
+  width: 1.5em;
+  margin-left: -1em;
 }
 </style>

@@ -1,31 +1,25 @@
 <template>
   <Layout>
     <article class="my-20">
-      <div class="flex mb-20" v-if="article.title != ''">
-        <div class="previewImage w-1/5 sm:ml-8 sm:mr-16 ml-4 mr-8">
+      <div class="flex flex-wrap items-center mb-20 sm:mx-8 " v-if="article.title != ''">
+        <div class="previewImage sm:w-1/3 w-full sm:pr-8">
           <g-image :alt="article.title" :src="article.heroImage.file.url" />
         </div>
-        <div class="w-3/5">
+        <div class="sm:w-2/3 w-full">
           <div class="mt-3 sm:text-3xl text-2xl font-bold">{{article.title}}</div>
-          <div class="flex justify-between">
-            <div class="my-3 text-xs text-gray-600">
-              <span class>{{convertToDate(article.publishDate)}}</span>
-              /
-              <a href="">Comment</a>
+          <div class="my-3 flex items-center">
+            <div class="text-xs text-gray-600">
+              <span class>{{convertToDate(article.publishDate)}}</span> / <a href="">Comment</a>
             </div>
-            <div class="social">
-              <a
-                target="_blank"
-                class="sm:mr-6 mr-4 float-left w-4 sm:w-8"
-                :href="`https://www.facebook.com/sharer/sharer.php?${facebookUrl}`"
-              >
+            <div class="ml-auto">
+              <a target="_blank"
+                class="sm:mr-6 mr-4 float-left w-6"
+                :href="`https://www.facebook.com/sharer/sharer.php?${facebookUrl}`" >
                 <g-image src="@/assets/facebook.svg" class="social-icon" />
               </a>
-              <a
-                target="_blank"
-                class="twitter-share-button float-left w-4 sm:w-8"
-                :href="'https://twitter.com/intent/tweet?' + twitterContent + '&' + twitterHashtag + '&' + twitterUrl"
-              >
+              <a target="_blank"
+                class="twitter-share-button float-left w-6"
+                :href="'https://twitter.com/intent/tweet?' + twitterContent + '&' + twitterHashtag + '&' + twitterUrl" >
                 <g-image src="@/assets/twitter.svg" class="social-icon" />
               </a>
             </div>
@@ -78,6 +72,7 @@ import { Route } from "vue-router";
 import marked from "marked";
 import { DateHelper } from "../utility/dateHelper";
 import { Constant } from "../utility/constant";
+import * as moment from 'moment'
 
 @Component({
   components: {},
@@ -88,21 +83,21 @@ import { Constant } from "../utility/constant";
         {
           key: "description",
           name: "description",
-          content: this.$data.article.body
+          content: this.$data.article.description
         },
 
         { property: "og:type", content: "article" },
         { property: "og:title", content: this.$data.article.title },
-        { property: "og:description", content: this.$data.article.body },
-        // { property: "og:url", content: this.postUrl },
-        // { property: "article:published_time", content: moment(this.$data.publishDate).format('YYYY-MM-DD') },
+        { property: "og:description", content: this.$data.article.description },
+        { property: "og:url", content: `${Constant.SiteURL}/${this.$data.article.id}` },
+        { property: "article:published_time", content: moment(this.$data.publishDate).format('YYYY-MM-DD') },
         // { property: "og:image", content: this.$data.article.heroImage.file.url },
 
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: this.$data.article.title },
-        { name: "twitter:description", content: this.$data.article.body },
-        { name: "twitter:site", content: "@cossssmin" },
-        { name: "twitter:creator", content: "@cossssmin" }
+        { name: "twitter:description", content: this.$data.article.description },
+        { name: "twitter:site", content: Constant.TwitterSite },
+        { name: "twitter:creator", content: Constant.TwitterCreator },
         // { name: "twitter:image", content: this.$data.article.heroImage.file.url },
       ]
     };
@@ -127,6 +122,8 @@ export default class BlogArticle extends Vue {
   }
 
   mounted() {
+    console.log(this.$page.$category);
+
     this.article = this.$page.contentfulBlogPost;
     this.markdown = marked(this.article.body);
     this.articleSlug = this.article.slug;
@@ -148,19 +145,27 @@ article >>> h2 {
   border-bottom: 2px solid #F0F0F0;
 }
 
-article >>> ul {
-  list-style: disc inside;
-  margin-bottom: 1rem;
-  margin-left: 2rem;
-}
-article >>> ul li {
-  margin-bottom: 1rem;
-  text-align: left;
-}
 .article-content >>> a {
   color: #5183f5;
   font-weight: bold;
   border-bottom: 2px solid #e6f2ff;
+}
+
+article >>> ul li {
+  list-style: none;
+}
+
+article >>> ul li::before {
+  color: gray;
+  content: "\2022";
+  font-weight: bold;
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em;
+}
+article >>> ul li {
+  margin-bottom: 1rem;
+  text-align: left;
 }
 </style>
 

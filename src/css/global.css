@@ -16,6 +16,10 @@ html, body, html * {
   cursor: pointer;
 }
 
+a:visited {
+  color: gray;
+}
+
 *:focus {
   outline: none;
 }

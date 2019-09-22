@@ -1,13 +1,13 @@
 <template>
   <div class="preview">
-    <router-link :to="`/article/${article.id}`">
+    <g-link :to="`/article/${article.id}`">
       <div class="previewImage">
         <Fluid :alt="article.title" :src="article.heroImage.file.url"/>
       </div>
       <div class="previewTitle">{{article.title}}</div>
       <p>{{article.description}}</p>
       <p/>
-    </router-link>
+    </g-link>
     <div class="previewDate">
       <small class="previewDate">{{convertToDate(article.publishDate)}}</small>
     </div>

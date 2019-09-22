@@ -1,7 +1,8 @@
 module.exports = {
   siteName: 'Learn Asalato',
   siteUrl: process.env.SITE_URL,
-
+  description: "",
+  
   templates: {
     ContentfulBlogPost: [
       {
