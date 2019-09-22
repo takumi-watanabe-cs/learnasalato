@@ -52,18 +52,41 @@ query Index {
 }
 </page-query>
 
-<script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
+<script>
 import { Article } from "@/models/article";
 import ArticlePreview from "@/components/ArticlePreview.vue";
 import ArticleLinePreview from "@/components/ArticleLinePreview.vue";
 import { Constant } from "@/utility/constant";
 
-@Component({
+export default {
   components: {
     ArticlePreview,
     ArticleLinePreview
+  },
+  data() {
+    const originalArticles = this.$root.$page.allContentfulBlogPost.edges.map(e => e.node);
+    return {
+      originalArticles: originalArticles,
+      articles: originalArticles,
+      tags: [],
+      keyword: ""
+    }
+  },
+  mounted() {
+    this.originalArticles.forEach(a => {
+      this.tags = this.tags.concat(a.tags);
+    })
+    this.tags = this.tags.filter(function(elem, index, self) {
+      return index === self.indexOf(elem);
+    })
+  },
+  methods: {
+    filterByTag(tag) {
+      this.articles = this.originalArticles.filter(a => a.tags.includes(tag));
+    },
+    internalSearch() {
+      this.articles = this.originalArticles.filter(a => a.body.includes(this.keyword));
+    }
   },
   metaInfo () {
     return {
@@ -83,38 +106,6 @@ import { Constant } from "@/utility/constant";
         { name: "twitter:image", content: Constant.OGImageUrl },
       ],
     }
-  },
-})
-export default class Articles extends Vue {
-  $page: any;
-  originalArticles: Array<Article> = new Array<Article>();
-  articles: Array<Article> = new Array<Article>();
-  tags: Array<string> = [];
-  keyword: string = "";
-
-  constructor() {
-    super();
-  }
-
-  mounted() {
-    this.originalArticles = this.$page.allContentfulBlogPost.edges.map(e => e.node);
-    this.articles = this.originalArticles;
-    this.originalArticles.forEach(a => {
-      this.tags = this.tags.concat(a.tags);
-    })
-    this.tags = this.tags.filter(function(elem, index, self) {
-      return index === self.indexOf(elem);
-    })
-
-    this.keyword = "";
-  }
-
-  filterByTag(tag: string) {
-    this.articles = this.originalArticles.filter(a => a.tags.includes(tag));
-  }
-
-  internalSearch() {
-    this.articles = this.originalArticles.filter(a => a.body.includes(this.keyword));
   }
 }
 </script>

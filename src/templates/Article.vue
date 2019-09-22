@@ -26,12 +26,7 @@
           </div>
 
           <div class="flex flex-wrap mb-4">
-            <div
-              v-for="(tag, index) in article.tags"
-              :key="index"
-              class="tag"
-              v-on:click="filterByTag(tag)"
-            >{{tag}}</div>
+            <div v-for="(tag, index) in article.tags" :key="index" class="tag" v-on:click="filterByTag(tag)" >{{tag}}</div>
           </div>
         </div>
       </div>
@@ -64,77 +59,58 @@ query Index($id: ID!) {
 }
 </page-query>
 
-<script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
+<script>
 import { Article } from "../models/article";
-import { Route } from "vue-router";
 import marked from "marked";
 import { DateHelper } from "../utility/dateHelper";
 import { Constant } from "../utility/constant";
 import * as moment from 'moment'
 
-@Component({
-  components: {},
+export default {
   metaInfo() {
     return {
-      title: `${this.$data.article.title}`,
+      title: `${this.article.title}`,
       meta: [
         {
           key: "description",
           name: "description",
-          content: this.$data.article.description
+          content: this.article.description
         },
 
         { property: "og:type", content: "article" },
-        { property: "og:title", content: this.$data.article.title },
-        { property: "og:description", content: this.$data.article.description },
-        { property: "og:url", content: `${Constant.SiteURL}/${this.$data.article.id}` },
-        { property: "article:published_time", content: moment(this.$data.publishDate).format('YYYY-MM-DD') },
-        // { property: "og:image", content: this.$data.article.heroImage.file.url },
+        { property: "og:title", content: this.article.title },
+        { property: "og:description", content: this.article.description },
+        { property: "og:url", content: `${Constant.SiteURL}/${this.article.id}` },
+        { property: "article:published_time", content: moment(this.article.publishDate).format('YYYY-MM-DD') },
+        { property: "og:image", content: this.article.heroImage.file.url },
 
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: this.$data.article.title },
-        { name: "twitter:description", content: this.$data.article.description },
+        { name: "twitter:title", content: this.article.title },
+        { name: "twitter:description", content: this.article.description },
         { name: "twitter:site", content: Constant.TwitterSite },
         { name: "twitter:creator", content: Constant.TwitterCreator },
-        // { name: "twitter:image", content: this.$data.article.heroImage.file.url },
+        { name: "twitter:image", content: this.article.heroImage.file.url },
       ]
     };
-  }
-})
-export default class BlogArticle extends Vue {
-  article: Article = new Article();
-  articleSlug: string = "";
-  markdown: string = "";
-  sitePrefix = `${Constant.SiteURL}/blog/`;
-  facebookUrl: string = "";
-  twitterContent = "";
-  twitterUrl = "";
-  twitterHashtag = "";
-  $page: any;
-  shortname: string;
-
-  constructor() {
-    super();
-
-    this.shortname = process.env.GRIDSOME_DISQUS_SHORTNAME;
-  }
-
-  mounted() {
-    console.log(this.$page.$category);
-
-    this.article = this.$page.contentfulBlogPost;
-    this.markdown = marked(this.article.body);
-    this.articleSlug = this.article.slug;
-    this.facebookUrl = `u=${this.sitePrefix}${this.articleSlug}`;
-    this.twitterUrl = `url=${this.sitePrefix}${this.articleSlug}`;
-    this.twitterHashtag = `hashtags=${Constant.SocialMediaHashtag}`;
-    this.twitterContent = `text=Check out the top 10 picks of ${this.article.title} at Top Trend Books!`;
-  }
-
-  convertToDate(strDate: string) {
-    return DateHelper.convertToDate(strDate);
+  },
+  data() {
+    const article = this.$root.$page.contentfulBlogPost;
+    const articleSlug = article.slug;
+    return {
+      article: article,
+      markdown: marked(article.body),
+      sitePrefix: `${Constant.SiteURL}/article/`,
+      facebookUrl: `u=${Constant.SiteURL}/article/${articleSlug}`,
+      twitterUrl: `url=${Constant.SiteURL}/article/${articleSlug}`,
+      twitterHashtag: `hashtags=${Constant.SocialMediaHashtag}`,
+      twitterContent: `text=Check out the top 10 picks of ${article.title} at Top Trend Books!`,
+      shortname: process.env.GRIDSOME_DISQUS_SHORTNAME
+    }
+  },
+  methods: {
+    convertToDate(strDate) {
+      return DateHelper.convertToDate(strDate);
+    }
   }
 }
 </script>
@@ -149,6 +125,10 @@ article >>> img {
 article >>> h2 {
   margin-top: 60px;
   border-bottom: 2px solid #F0F0F0;
+}
+
+article >>> h3 {
+  margin-top: 60px;
 }
 
 .article-content >>> a {
