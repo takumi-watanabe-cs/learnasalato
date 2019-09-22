@@ -140,6 +140,12 @@ export default class BlogArticle extends Vue {
 </script>
 
 <style scoped>
+article {
+  /* height: 100vh; */
+}
+article >>> img {
+  padding: 20px 0;
+}
 article >>> h2 {
   margin-top: 60px;
   border-bottom: 2px solid #F0F0F0;
@@ -166,6 +172,12 @@ article >>> ul li::before {
 article >>> ul li {
   margin-bottom: 1rem;
   text-align: left;
+}
+article >>> iframe {
+  background: #000;
+  border: none;
+  width: 100%;
+  height: 415px;
 }
 </style>
 
