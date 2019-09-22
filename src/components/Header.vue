@@ -24,6 +24,7 @@ query {
 </static-query>
 
 <script>
+import { Vue, Component } from "vue-property-decorator";
 @Component({
   components: {}
 })
