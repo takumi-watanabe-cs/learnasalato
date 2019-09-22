@@ -64,7 +64,7 @@ export default {
     ArticleLinePreview
   },
   data() {
-    const originalArticles = this.$root.$page.allContentfulBlogPost.edges.map(e => e.node);
+    const originalArticles = this.$page.allContentfulBlogPost.edges.map(e => e.node);
     return {
       originalArticles: originalArticles,
       articles: originalArticles,

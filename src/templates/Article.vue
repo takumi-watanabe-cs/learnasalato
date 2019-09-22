@@ -94,7 +94,7 @@ export default {
     };
   },
   data() {
-    const article = this.$root.$page.contentfulBlogPost;
+    const article = this.$page.contentfulBlogPost;
     const articleSlug = article.slug;
     return {
       article: article,
