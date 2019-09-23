@@ -53,14 +53,11 @@ query Index {
 </page-query>
 
 <script>
-import { Article } from "@/models/article";
-import ArticlePreview from "@/components/ArticlePreview.vue";
 import ArticleLinePreview from "@/components/ArticleLinePreview.vue";
 import { Constant } from "@/utility/constant";
 
 export default {
   components: {
-    ArticlePreview,
     ArticleLinePreview
   },
   data() {
