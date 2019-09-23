@@ -62,8 +62,8 @@ export default {
   },
   data() {
     return {
-      originalArticles: originalArticles,
-      articles: originalArticles,
+      originalArticles: [],
+      articles: [],
       tags: [],
       keyword: ""
     }
