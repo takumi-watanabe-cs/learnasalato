@@ -63,15 +63,20 @@ query Index {
 }
 </page-query>
 
-<script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import { Article } from "@/models/article";
+<script>
 import ArticleHeadline from "@/components/ArticleHeadline.vue";
 import { Constant } from "@/utility/constant";
 
-@Component({
+export default {
   components: {
     ArticleHeadline
+  },
+  data() {
+    const articles = this.$page.allContentfulBlogPost.edges.map(e => e.node);
+    return {  
+      articles: articles,
+      popularArticles: articles.filter(a => a.tags.includes("popular"))
+    }
   },
   metaInfo() {
     return {
@@ -91,22 +96,6 @@ import { Constant } from "@/utility/constant";
         { name: "twitter:image", content: Constant.OGImageUrl }
       ]
     };
-  }
-})
-export default class Blog extends Vue {
-  $page: any;
-  articles: Array<Article> = new Array<Article>();
-  popularArticles: Array<Article> = new Array<Article>();
-
-  constructor() {
-    super();
-  }
-
-  mounted() {
-    this.articles = this.$page.allContentfulBlogPost.edges.map(e => e.node);
-    this.popularArticles = this.articles.filter(a =>
-      a.tags.includes("popular")
-    );
   }
 }
 </script>

@@ -6,23 +6,15 @@
   </g-link>
 </template>
 
-<script lang="ts">
+<script>
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Article } from "@/models/article";
 import { Constant } from "@/utility/constant";
 
-@Component({
-  components: {
-  }
-})
-export default class ArticleHeadline extends Vue {
-  @Prop() article: Article;
-  @Prop() isPopular: boolean;
-  tags: Array<string> = [];
-  keyword: string = "";
-
-  constructor() {
-    super();
+export default {
+  props: {
+    article: Object,
+    isPopular: Boolean
   }
 }
 </script>

@@ -12,23 +12,17 @@
 </template>
 
 
-<script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
-import { Article } from "@/models/article";
+<script>
 import { DateHelper } from '@/utility/dateHelper';
 
-@Component({
-  components: { },
-})
-export default class ArticleLinePreview extends Vue {
-  @Prop() article;
-
-  constructor() {
-    super();
-  }
-
-  convertToDate(strDate: string) {
-    return DateHelper.convertToDate(strDate);
+export default {
+  props: {
+    article: Object
+  },
+  methods: {
+    convertToDate(strDate) {
+      return DateHelper.convertToDate(strDate);
+    }
   }
 }
 </script>

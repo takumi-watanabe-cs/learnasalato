@@ -20,14 +20,6 @@ query {
 }
 </static-query>
 
-<script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-@Component({
-  components: {}
-})
-export default class Footer extends Vue {}
-</script>
-
 <style scoped lang="postcss">
 .copyright {
   display: inline-block;

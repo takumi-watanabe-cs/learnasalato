@@ -23,14 +23,6 @@ query {
 }
 </static-query>
 
-<script>
-import { Vue, Component } from "vue-property-decorator";
-@Component({
-  components: {}
-})
-export default class Header extends Vue {}
-</script>
-
 <style scoped lang="postcss">
 .nav__link {
   color: gray;
