@@ -72,11 +72,14 @@ export default {
     ArticleHeadline
   },
   data() {
-    const articles = this.$page.allContentfulBlogPost.edges.map(e => e.node);
     return {  
-      articles: articles,
-      popularArticles: articles.filter(a => a.tags.includes("popular"))
+      articles: [],
+      popularArticles: []
     }
+  },
+  mounted() {
+    this.articles = this.$page.allContentfulBlogPost.edges.map(e => e.node);
+    this.popularArticles = this.articles.filter(a => a.tags.includes("popular"));
   },
   metaInfo() {
     return {

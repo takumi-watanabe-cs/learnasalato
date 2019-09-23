@@ -70,6 +70,7 @@ export default {
   },
   mounted() {
     this.originalArticles = this.$page.allContentfulBlogPost.edges.map(e => e.node);
+    this.articles = this.originalArticles;
     this.originalArticles.forEach(a => {
       this.tags = this.tags.concat(a.tags);
     })
