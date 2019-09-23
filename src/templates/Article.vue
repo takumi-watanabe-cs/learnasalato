@@ -37,34 +37,29 @@ export default {
   components: {
     ArticleContent
   },
-  data() {
-    return {
-      article: this.$page.contentfulBlogPost
-    }
-  },
   metaInfo() {
     return {
-      title: `${this.article.title}`,
+      title: `${this.$page.contentfulBlogPost.title}`,
       meta: [
         {
           key: "description",
           name: "description",
-          content: this.article.description
+          content: this.$page.contentfulBlogPost.description
         },
 
         { property: "og:type", content: "article" },
-        { property: "og:title", content: this.article.title },
-        { property: "og:description", content: this.article.description },
-        { property: "og:url", content: `${Constant.SiteURL}/${this.article.id}` },
-        { property: "article:published_time", content: moment(this.article.publishDate).format('YYYY-MM-DD') },
-        { property: "og:image", content: this.article.heroImage.file.url },
+        { property: "og:title", content: this.$page.contentfulBlogPost.title },
+        { property: "og:description", content: this.$page.contentfulBlogPost.description },
+        { property: "og:url", content: `${Constant.SiteURL}/${this.$page.contentfulBlogPost.id}` },
+        { property: "article:published_time", content: moment(this.$page.contentfulBlogPost.publishDate).format('YYYY-MM-DD') },
+        { property: "og:image", content: this.$page.contentfulBlogPost.heroImage.file.url },
 
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: this.article.title },
-        { name: "twitter:description", content: this.article.description },
+        { name: "twitter:title", content: this.$page.contentfulBlogPost.title },
+        { name: "twitter:description", content: this.$page.contentfulBlogPost.description },
         { name: "twitter:site", content: Constant.TwitterSite },
         { name: "twitter:creator", content: Constant.TwitterCreator },
-        { name: "twitter:image", content: this.article.heroImage.file.url },
+        { name: "twitter:image", content: this.$page.contentfulBlogPost.heroImage.file.url },
       ]
     };
   },

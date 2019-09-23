@@ -61,7 +61,6 @@ export default {
     ArticleLinePreview
   },
   data() {
-    const originalArticles = this.$page.allContentfulBlogPost.edges.map(e => e.node);
     return {
       originalArticles: originalArticles,
       articles: originalArticles,
@@ -70,6 +69,7 @@ export default {
     }
   },
   mounted() {
+    this.originalArticles = this.$page.allContentfulBlogPost.edges.map(e => e.node);
     this.originalArticles.forEach(a => {
       this.tags = this.tags.concat(a.tags);
     })
