@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      article: this.$root.$page.contentfulBlogPost
+      article: this.$page.contentfulBlogPost
     }
   },
   metaInfo() {
