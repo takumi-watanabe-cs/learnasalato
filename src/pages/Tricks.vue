@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <h2 class="mb-10 text-3xl">Articles</h2>
+    <h2 class="mb-10 text-3xl">Tricks</h2>
     <div class="flex flex-wrap mb-4">
       <div v-for="(tag, index) in tags" :key="index" class="tag" v-on:click="filterByTag(tag)">{{tag}}</div>
     </div>
@@ -31,7 +31,7 @@ query Index {
   allContentfulBlogPost(
     sortBy: "publishDate", 
     order: DESC, 
-    filter: { categories: { contains: "Learn" }}) {
+    filter: { categories: { contains: "Trick" }}) {
     totalCount
     edges {
       node {
@@ -49,6 +49,7 @@ query Index {
         body
         publishDate
         tags
+        categories
       }
     }
   }

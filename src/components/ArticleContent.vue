@@ -3,7 +3,7 @@
     <article class="">
       <div class="flex flex-wrap items-center sm:mb-20 sm:mx-8" v-if="article.title != ''">
         <div class="previewImage sm:w-1/3 w-full sm:pr-8">
-          <g-image :alt="article.title" :src="article.heroImage.file.url" />
+          <g-image v-if="article.heroImage" :alt="article.title" :src="article.heroImage.file.url" />
         </div>
         <div class="sm:w-2/3 w-full">
           <div class="mt-3 sm:text-3xl text-2xl font-bold">{{article.title}}</div>

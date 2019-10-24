@@ -1,7 +1,7 @@
 <template>
   <g-link :to="`/article/${article.id}`" class="py-5 flex items-center">
     <div class="previewImage w-1/5 ml-5 mr-10">
-      <img :alt="article.title" :src="article.heroImage.file.url" />
+      <img v-if="article.heroImage" :alt="article.title" :src="article.heroImage.file.url" />
     </div>
     <div class="w-3/5">
       <div class="mt-3 text-lg font-bold">{{article.title}}</div>
