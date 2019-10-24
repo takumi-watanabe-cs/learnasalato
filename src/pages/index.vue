@@ -2,8 +2,8 @@
   <Layout>
     <div class="mb-20">
       <div class="flex flex-wrap items-end">
-        <div class="mr-20">
-          <h2 class="text-6xl">Asalato</h2>
+        <div class="sm:mr-20">
+          <h2 class="sm:text-5xl text-3xl">Asalato</h2>
           <p>We write latest and useful articles about Asalato.</p>
           <ul>
             <li>What is Asalato?</li>
@@ -12,12 +12,12 @@
             <li>Events</li>
             </ul>
         </div>
-        <g-image class="sm:w-5/12 h-full sm:ml-auto" src="@/assets/hero.png" />
+        <img class="sm:w-5/12 sm:ml-auto" src="@/assets/hero.png" />
       </div>
     </div>
     <div class="mb-32">
       <div class="flex items-center">
-        <h2 class="mr-8">Latest Articles</h2>
+        <h2 class="mr-8 sm:text-3xl text-2xl">Top Articles</h2>
         <g-link class="tag" to="/articles">View all</g-link>
       </div>
       <div v-for="(article, index) in articles" :key="index">

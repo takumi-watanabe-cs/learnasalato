@@ -9,7 +9,7 @@
           <div class="mt-3 sm:text-3xl text-2xl font-bold">{{article.title}}</div>
           <div class="my-3 flex items-center">
             <div class="text-xs text-gray-600">
-              <span class>{{convertToDate(article.publishDate)}}</span> /
+              <!-- <span class>{{convertToDate(article.publishDate)}}</span> / -->
               <a href>Comment</a>
             </div>
             <div class="ml-auto">
